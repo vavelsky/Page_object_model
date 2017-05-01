@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.fail;
 
-public class TestImport {
+public class TestPlaylistImport {
 
     WebDriver $;
     HomePage objHomePage;
