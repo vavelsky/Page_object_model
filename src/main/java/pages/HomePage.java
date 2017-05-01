@@ -8,6 +8,8 @@ public class HomePage {
     WebDriver $;
     By homePageName = By.xpath("//navigation-primary/div/div/h1");
     By linkText = By.linkText("Import");
+    By SearchField = By.xpath("//input[@type='text']");
+    By SearchButton = By.xpath("//button[contains(., 'Search')]");
 
     public HomePage(WebDriver $) {
         this.$ = $;
@@ -15,6 +17,14 @@ public class HomePage {
 
     public String getHomePageName() {
         return $.findElement(homePageName).getText();
+    }
+
+    public void findPlaylist(String strSearchField){
+        $.findElement(SearchField).sendKeys(strSearchField);
+    }
+
+    public void clickSearch(){
+        $.findElement(SearchButton).click();
     }
 
     public void clickImport() {
