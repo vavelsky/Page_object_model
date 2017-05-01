@@ -49,6 +49,8 @@ public class TestPlaylistDelete {
         Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
         objDatabasePage.openPlaylist();
         objPlaylistPage.clickDelete();
+        objPlaylistPage.clickDeleteOnPopup();
+        Assert.assertTrue(objDatabasePage.getNotification().toLowerCase().contains("playlist has been deleted!"));
     }
 
     @After

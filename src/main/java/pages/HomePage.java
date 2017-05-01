@@ -10,6 +10,7 @@ public class HomePage {
     By linkText = By.linkText("Import");
     By SearchField = By.xpath("//input[@type='text']");
     By SearchButton = By.xpath("//button[contains(., 'Search')]");
+    By Notification = By.xpath("//body/md-toast/div/span");
 
     public HomePage(WebDriver $) {
         this.$ = $;
@@ -29,5 +30,9 @@ public class HomePage {
 
     public void clickImport() {
         $.findElement(linkText).click();
+    }
+
+    public void waitNotification(){
+        $.findElement(Notification);
     }
 }

@@ -12,6 +12,7 @@ public class DatabasePage {
     By FilterByParrentBrand = By.xpath("");
     By FilterByPlaylistBrand = By.xpath("");
     By FilterByTeam = By.xpath("");
+    By Notification = By.xpath("//body/md-toast/div/span");
     By Playlist = By.xpath("//tr[@class='playlist-row ng-scope']/td/a");
     By PlaylistNameOnList = By.xpath("//playlists-table/table/tbody/tr[3]/td[1]/a");
     By PlaylistStatus = By.xpath("//playlists-table/table/tbody/tr[3]/td[6]/span/span");
@@ -42,5 +43,9 @@ public class DatabasePage {
 
     public void clickSearch(){
         $.findElement(SearchButton).click();
+    }
+
+    public String getNotification(){
+        return $.findElement(Notification).getText();
     }
 }
