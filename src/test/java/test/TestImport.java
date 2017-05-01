@@ -9,8 +9,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.ImportPage;
 import pages.LoginPage;
+import pages.PlaylistPage;
 
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.fail;
 
 public class TestImport {
 
@@ -18,6 +21,9 @@ public class TestImport {
     HomePage objHomePage;
     LoginPage objLogin;
     ImportPage objImport;
+    PlaylistPage objPlaylist;
+
+    private StringBuffer verificationErrors = new StringBuffer();
 
     @Before
     public void setUp(){
@@ -40,10 +46,16 @@ public class TestImport {
         objImport.selectPlaylistBrand();
         objImport.clickImport();
         objImport.waitNotification();
+        objPlaylist = new PlaylistPage($);
+        Assert.assertTrue(objPlaylist.getPlaylistPageTitle().toLowerCase().contains("playlistk"));
     }
 
     @After
     public void tearDown(){
         $.quit();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+            fail(verificationErrorString);
+        }
     }
 }

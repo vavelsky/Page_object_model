@@ -1,5 +1,6 @@
 package test;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +11,14 @@ import pages.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.fail;
+
 public class TestCmsLogin {
 
     WebDriver $;
     HomePage objHomePage;
     LoginPage objLogin;
+    private StringBuffer verificationErrors = new StringBuffer();
 
     @Before
     public void setUp(){
@@ -30,5 +34,14 @@ public class TestCmsLogin {
         objLogin.loginToCms("super@admin.pl", "haslo");
         objHomePage = new HomePage($);
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
+    }
+
+    @After
+    public void tearDown(){
+        $.quit();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+            fail(verificationErrorString);
+        }
     }
 }
