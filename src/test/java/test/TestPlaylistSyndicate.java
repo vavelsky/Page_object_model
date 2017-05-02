@@ -1,13 +1,14 @@
 package test;
 
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.DatabasePage;
 import pages.HomePage;
-import pages.ImportPage;
 import pages.LoginPage;
 import pages.PlaylistPage;
 
@@ -15,18 +16,19 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.fail;
 
-public class TestPlaylistImport {
+public class TestPlaylistSyndicate {
 
     WebDriver $;
+    DatabasePage objDatabasePage;
     HomePage objHomePage;
     LoginPage objLogin;
-    ImportPage objImport;
-    PlaylistPage objPlaylist;
+    PlaylistPage objPlaylistPage;
 
     private StringBuffer verificationErrors = new StringBuffer();
 
     @Before
     public void setUp(){
+
         $ = new ChromeDriver();
         $.get("https://develop-web-cms-pitched.miquido.net/");
         $.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
@@ -34,27 +36,30 @@ public class TestPlaylistImport {
     }
 
     @Test
-    public void test_import() {
+    public void test_playlist_syndicate() throws Exception {
 
-        objLogin = new LoginPage($);
+        objDatabasePage = new DatabasePage($);
         objHomePage = new HomePage($);
-        objImport = new ImportPage($);
-        objPlaylist = new PlaylistPage($);
+        objLogin = new LoginPage($);
+        objPlaylistPage = new PlaylistPage($);
 
         objLogin.loginToCms("super@admin.pl", "haslo");
-        objHomePage.clickImport();
-        Assert.assertTrue(objImport.getImportPageName().toLowerCase().contains("import"));
-        objImport.setSpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
-        objImport.clickBrands();
-        objImport.selectPlaylistBrand();
-        objImport.clickImport();
-        objImport.waitNotification();
+        Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
+        objHomePage.findPlaylist("PlaylistK");
+        objHomePage.clickSearch();
 
-        Assert.assertTrue(objPlaylist.getPlaylistPageTitle().toLowerCase().contains("playlistk"));
+        Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
+        objDatabasePage.openPlaylist();
+
+        objPlaylistPage.clickUpdate();
+        objPlaylistPage.syndicateToDeezer();
+        objPlaylistPage.clickSyndicate();
+
+        Assert.assertTrue(objPlaylistPage.getSyndicateStatus().toLowerCase().contains("deezer completed."));
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() throws Exception {
         $.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {

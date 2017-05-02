@@ -45,6 +45,9 @@ public class TestPlaylistPublishing {
 
         Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
         objDatabasePage.clickPublish();
+
+        Assert.assertTrue(objDatabasePage.getPlaylistStatus().toLowerCase().contains("published"));
+        Assert.assertTrue(objDatabasePage.getNotification().toLowerCase().contains("playlist has beed updated!"));
         Assert.assertTrue(objDatabasePage.getPlaylistStatus().toLowerCase().contains("published"));
 
     }

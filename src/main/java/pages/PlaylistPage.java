@@ -12,12 +12,17 @@ public class PlaylistPage {
     By ReimportButton = By.xpath("//button[contains(., 'Reimport')]");
     By SaveButton = By.xpath("//button[contains(., 'Save')]");
     By SyndicateButton = By.xpath("//button[contains(., 'Syndicate')]");
+    By SyndicateStatus = By.xpath("//div/strong[@class='ng-binding']");
     By PlaylistPageTitle = By.xpath("//ui-view/playlist-edit/div/div/div[1]/h1/span[2]");
     By PlaylistName = By.xpath("//expandable-section/div[2]/div/content/div[1]/div[1]/input");
     By PlaylistDescription = By.xpath("//expandable-section/div[2]/div/content/div[1]/div[2]/textarea");
     By PopupDeleteButton = By.xpath("//md-dialog-actions/button[2]");
     By PrimaryPlaylistOwner = By.xpath("//playlist-edit/div/div/div[3]/div[1]/div/div/div[1]/span");
     By SecondaryPlaylistOwner = By.xpath("//playlist-edit/div/div/div[3]/div[2]/div/div/div[1]/span");
+    By SyndicateDeezerCheckbox = By.cssSelector("div.playlist-publish-dialog__services-checkboxes > md-checkbox[name=\"Deezer\"] > div.md-label > span.ng-binding.ng-scope");
+    By SyndicateNapsterCheckbox = By.cssSelector("");
+    By SyndicateYoutubeCheckbox = By.cssSelector("");
+    By SyndicateSoundcloudCheckbox = By.cssSelector("");
 
     public PlaylistPage(WebDriver $){
         this.$ = $;
@@ -59,6 +64,14 @@ public class PlaylistPage {
     public void clickSyndicate(){
 
         $.findElement(SyndicateButton).click();
+    }
+
+    public void syndicateToDeezer() {
+        $.findElement(SyndicateDeezerCheckbox).click();
+    }
+
+    public String getSyndicateStatus(){
+        return $.findElement(SyndicateStatus).getText();
     }
 
     //get Playlist name
