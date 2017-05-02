@@ -15,7 +15,8 @@ public class ImportPage {
     By YoutubeInputField = By.xpath("//playlist-import/div/div/div[2]/div/div[4]/div/input");
     By SoundcloudInputField = By.xpath("//ui-view/playlist-import/div/div/div[2]/div/div[5]/div/input");
     By PlaylistBrandDrop = By.cssSelector("span.ui-select-match-text.pull-left");
-    By PlaylistBrand = By.cssSelector("#ui-select-choices-row-0-31 > span.ui-select-choices-row-inner > span.ng-binding.ng-scope");
+    By DigsterFmPlaylistBrand = By.cssSelector("#ui-select-choices-row-0-31 > span.ui-select-choices-row-inner > span.ng-binding.ng-scope");
+    By NoSpotifyTokenPlaylistBrand = By.cssSelector("#ui-select-choices-row-0-2 > span.ui-select-choices-row-inner > span.ng-binding.ng-scope");
     By Notification = By.xpath("//body/md-toast/div/span");
 
 
@@ -43,8 +44,12 @@ public class ImportPage {
         $.findElement(SoundcloudInputField).sendKeys(strSoundcloudURL);
     }
 
-    public void selectPlaylistBrand(){
-        $.findElement(PlaylistBrand).click();
+    public void selectDigsterFmPlaylistBrand(){
+        $.findElement(DigsterFmPlaylistBrand).click();
+    }
+
+    public void selectPlaylistBrandWithoutToken(){
+        $.findElement(NoSpotifyTokenPlaylistBrand).click();
     }
 
     public String getImportPageName(){
@@ -59,7 +64,7 @@ public class ImportPage {
         $.findElement(ImportButton).click();
     }
 
-    public void waitNotification(){
-        $.findElement(Notification);
+    public String getNotification(){
+        return $.findElement(Notification).getText();
     }
 }
