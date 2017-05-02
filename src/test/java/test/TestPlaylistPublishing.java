@@ -9,19 +9,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.DatabasePage;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.PlaylistPage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.fail;
 
-public class Test6 {
+public class TestPlaylistPublishing {
 
     WebDriver $;
     LoginPage objLogin;
     HomePage objHomePage;
     DatabasePage objDatabasePage;
-    PlaylistPage objPlaylistPage;
 
     private StringBuffer verificationErrors = new StringBuffer();
 
@@ -34,22 +32,24 @@ public class Test6 {
     }
 
     @Test
-    public void test_playlist_delete(){
+    public void test_playlist_publishing(){
 
         objLogin = new LoginPage($);
         objHomePage = new HomePage($);
         objDatabasePage = new DatabasePage($);
-        objPlaylistPage = new PlaylistPage($);
 
         objLogin.loginToCms("super@admin.pl", "haslo");
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
         objHomePage.findPlaylist("PlaylistK");
         objHomePage.clickSearch();
+
         Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
-        objDatabasePage.openPlaylist();
-        objPlaylistPage.clickDelete();
-        objPlaylistPage.clickDeleteOnPopup();
-        Assert.assertTrue(objDatabasePage.getNotification().toLowerCase().contains("playlist has been deleted!"));
+        objDatabasePage.clickPublish();
+
+        Assert.assertTrue(objDatabasePage.getPlaylistStatus().toLowerCase().contains("published"));
+        Assert.assertTrue(objDatabasePage.getNotification().toLowerCase().contains("playlist has beed updated!"));
+        Assert.assertTrue(objDatabasePage.getPlaylistStatus().toLowerCase().contains("published"));
+
     }
 
     @After
