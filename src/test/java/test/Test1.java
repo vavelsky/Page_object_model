@@ -6,23 +6,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.DatabasePage;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.PlaylistPage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.fail;
 
-public class TestPlaylistDelete {
+public class Test1 {
 
     WebDriver $;
-    LoginPage objLogin;
     HomePage objHomePage;
-    DatabasePage objDatabasePage;
-    PlaylistPage objPlaylistPage;
-
+    LoginPage objLogin;
     private StringBuffer verificationErrors = new StringBuffer();
 
     @Before
@@ -34,22 +29,11 @@ public class TestPlaylistDelete {
     }
 
     @Test
-    public void test_playlist_delete(){
-
+    public void test_HomePage_Login(){
         objLogin = new LoginPage($);
-        objHomePage = new HomePage($);
-        objDatabasePage = new DatabasePage($);
-        objPlaylistPage = new PlaylistPage($);
-
         objLogin.loginToCms("super@admin.pl", "haslo");
+        objHomePage = new HomePage($);
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
-        objHomePage.findPlaylist("PlaylistK");
-        objHomePage.clickSearch();
-        Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
-        objDatabasePage.openPlaylist();
-        objPlaylistPage.clickDelete();
-        objPlaylistPage.clickDeleteOnPopup();
-        Assert.assertTrue(objDatabasePage.getNotification().toLowerCase().contains("playlist has been deleted!"));
     }
 
     @After

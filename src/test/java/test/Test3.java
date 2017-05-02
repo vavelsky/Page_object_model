@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
-public class TestPlaylistImportFailed {
+public class Test3 {
 
     WebDriver $;
     HomePage objHomePage;
@@ -69,7 +69,7 @@ public class TestPlaylistImportFailed {
         objImport.selectPlaylistBrandWithoutToken();
         objImport.clickImport();
 
-        Assert.assertTrue(objImport.getNotification().toLowerCase().contains("an error has occured, playlist has not been imported: invalid oauth credentials"));
+        Assert.assertTrue(objImport.getNotification().toLowerCase().contains("an error has occured, playlist has not been imported: invalid oauth credentails"));
     }
 
     @After
