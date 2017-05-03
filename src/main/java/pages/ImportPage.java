@@ -25,18 +25,22 @@ public class ImportPage {
     }
 
     public void setSpotifyInputField(String strSpotifyURI){
+
         $.findElement(SpotifyInputField).sendKeys(strSpotifyURI);
     }
 
     public void setDeezerInputField(String strDeezerURL){
+
         $.findElement(DeezerInputField).sendKeys(strDeezerURL);
     }
 
     public void setNapsterInputField(String strNapsterURL){
+
         $.findElement(NapsterInputField).sendKeys(strNapsterURL);
     }
 
     public void setYoutubeInputField(String strYoutubeURL){
+
         $.findElement(YoutubeInputField).sendKeys(strYoutubeURL);
     }
 
@@ -49,22 +53,27 @@ public class ImportPage {
     }
 
     public void selectPlaylistBrandWithoutToken(){
+
         $.findElement(NoSpotifyTokenPlaylistBrand).click();
     }
 
     public String getImportPageName(){
-       return $.findElement(ImportPageName).getText();
+
+        return $.findElement(ImportPageName).getText();
     }
 
     public void clickBrands(){
+
         $.findElement(PlaylistBrandDrop).click();
     }
 
     public void clickImport() {
+
         $.findElement(ImportButton).click();
     }
 
     public String getNotification(){
+
         return $.findElement(Notification).getText();
     }
 }

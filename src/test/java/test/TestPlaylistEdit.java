@@ -6,20 +6,26 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.*;
-import static org.junit.Assert.fail;
+import pages.DatabasePage;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.PlaylistPage;
+
 import java.util.concurrent.TimeUnit;
 
-public class TestPlaylistReimport {
+import static org.junit.Assert.fail;
+
+public class TestPlaylistEdit {
 
     WebDriver $;
-    LoginPage objLogin;
-    HomePage objHomePage;
+
     DatabasePage objDatabasePage;
+    HomePage objHomePage;
+    LoginPage objLogin;
     PlaylistPage objPlaylistPage;
 
 
-    public StringBuffer verificationErrors = new StringBuffer();
+    private StringBuffer verificationErrors = new StringBuffer();
 
     @Before
     public void setUp() throws Exception {
@@ -30,7 +36,7 @@ public class TestPlaylistReimport {
     }
 
     @Test
-    public void test_playlist_reimport() throws Exception {
+    public void edit_name_and_description() throws Exception {
 
         objLogin = new LoginPage($);
         objHomePage = new HomePage($);
@@ -45,8 +51,13 @@ public class TestPlaylistReimport {
         Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
         objDatabasePage.openPlaylist();
 
-        objPlaylistPage.clickReimport();
-        Assert.assertEquals("playlist has been reimported successfully.", objPlaylistPage.getReimportStatus());
+        objPlaylistPage.setPlaylistName("New name");
+        objPlaylistPage.setPlaylistDescription("New description");
+
+        objPlaylistPage.clickSave();
+        Assert.assertTrue(objPlaylistPage.getNotification().toLowerCase().contains("playlist has been updated!"));
+
+
     }
 
     @After

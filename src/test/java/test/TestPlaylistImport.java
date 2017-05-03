@@ -21,7 +21,7 @@ public class TestPlaylistImport {
     HomePage objHomePage;
     LoginPage objLogin;
     ImportPage objImport;
-    PlaylistPage objPlaylist;
+    PlaylistPage objPlaylistPage;
 
     private StringBuffer verificationErrors = new StringBuffer();
 
@@ -39,7 +39,7 @@ public class TestPlaylistImport {
         objLogin = new LoginPage($);
         objHomePage = new HomePage($);
         objImport = new ImportPage($);
-        objPlaylist = new PlaylistPage($);
+        objPlaylistPage = new PlaylistPage($);
 
         objLogin.loginToCms("super@admin.pl", "haslo");
         objHomePage.clickImport();
@@ -50,7 +50,7 @@ public class TestPlaylistImport {
         objImport.clickImport();
         Assert.assertTrue(objImport.getNotification().toLowerCase().contains("playlist has been imported!"));
 
-        Assert.assertTrue(objPlaylist.getPlaylistPageTitle().toLowerCase().contains("playlistk"));
+        Assert.assertTrue(objPlaylistPage.getPlaylistPageTitle().toLowerCase().contains("playlistk"));
     }
 
     @After
