@@ -6,20 +6,25 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.*;
-import static org.junit.Assert.fail;
+import pages.DatabasePage;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.PlaylistPage;
+
 import java.util.concurrent.TimeUnit;
 
-public class TestPlaylistReimport {
+import static org.junit.Assert.fail;
+
+public class TestPlaylistChangeOwner {
 
     WebDriver $;
-    LoginPage objLoginPage;
-    HomePage objHomePage;
+
     DatabasePage objDatabasePage;
+    HomePage objHomePage;
+    LoginPage objLoginPage;
     PlaylistPage objPlaylistPage;
 
-
-    public StringBuffer verificationErrors = new StringBuffer();
+    private StringBuffer verificationErrors = new StringBuffer();
 
     @Before
     public void setUp() throws Exception {
@@ -30,11 +35,11 @@ public class TestPlaylistReimport {
     }
 
     @Test
-    public void test_playlist_reimport() throws Exception {
+    public void name() throws Exception {
 
-        objLoginPage = new LoginPage($);
-        objHomePage = new HomePage($);
         objDatabasePage = new DatabasePage($);
+        objHomePage = new HomePage($);
+        objLoginPage = new LoginPage($);
         objPlaylistPage = new PlaylistPage($);
 
         objLoginPage.loginToCms("super@admin.pl", "haslo");
@@ -44,14 +49,12 @@ public class TestPlaylistReimport {
 
         Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
         objDatabasePage.openPlaylist();
-
-        objPlaylistPage.clickReimport();
-        Assert.assertEquals("playlist has been reimported successfully.", objPlaylistPage.getReimportStatus());
+        objPlaylistPage.setPrimaryPlaylistOwner("Donovan Palmer");
     }
 
     @After
     public void tearDown() throws Exception {
-        $.quit();
+        //$.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);

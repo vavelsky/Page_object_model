@@ -18,7 +18,7 @@ import static org.junit.Assert.fail;
 public class TestPlaylistDelete {
 
     WebDriver $;
-    LoginPage objLogin;
+    LoginPage objLoginPage;
     HomePage objHomePage;
     DatabasePage objDatabasePage;
     PlaylistPage objPlaylistPage;
@@ -36,12 +36,12 @@ public class TestPlaylistDelete {
     @Test
     public void test_playlist_delete(){
 
-        objLogin = new LoginPage($);
+        objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
         objDatabasePage = new DatabasePage($);
         objPlaylistPage = new PlaylistPage($);
 
-        objLogin.loginToCms("super@admin.pl", "haslo");
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
         objHomePage.findPlaylist("PlaylistK");
         objHomePage.clickSearch();

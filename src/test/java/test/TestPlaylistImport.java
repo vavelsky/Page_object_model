@@ -19,8 +19,8 @@ public class TestPlaylistImport {
 
     WebDriver $;
     HomePage objHomePage;
-    LoginPage objLogin;
-    ImportPage objImport;
+    LoginPage objLoginPage;
+    ImportPage objImportPage;
     PlaylistPage objPlaylistPage;
 
     private StringBuffer verificationErrors = new StringBuffer();
@@ -36,19 +36,19 @@ public class TestPlaylistImport {
     @Test
     public void test_import() {
 
-        objLogin = new LoginPage($);
+        objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
-        objImport = new ImportPage($);
+        objImportPage = new ImportPage($);
         objPlaylistPage = new PlaylistPage($);
 
-        objLogin.loginToCms("super@admin.pl", "haslo");
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
         objHomePage.clickImport();
-        Assert.assertTrue(objImport.getImportPageName().toLowerCase().contains("import"));
-        objImport.setSpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
-        objImport.clickBrands();
-        objImport.selectDigsterFmPlaylistBrand();
-        objImport.clickImport();
-        Assert.assertTrue(objImport.getNotification().toLowerCase().contains("playlist has been imported!"));
+        Assert.assertTrue(objImportPage.getImportPageName().toLowerCase().contains("import"));
+        objImportPage.setSpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        objImportPage.clickBrands();
+        objImportPage.selectDigsterFmPlaylistBrand();
+        objImportPage.clickImport();
+        Assert.assertTrue(objImportPage.getNotification().toLowerCase().contains("playlist has been imported!"));
 
         Assert.assertTrue(objPlaylistPage.getPlaylistPageTitle().toLowerCase().contains("playlistk"));
     }

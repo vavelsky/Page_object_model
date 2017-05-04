@@ -17,7 +17,7 @@ public class TestLogin {
 
     WebDriver $;
     HomePage objHomePage;
-    LoginPage objLogin;
+    LoginPage objLoginPage;
     private StringBuffer verificationErrors = new StringBuffer();
 
     @Before
@@ -30,8 +30,8 @@ public class TestLogin {
 
     @Test
     public void test_HomePage_Login(){
-        objLogin = new LoginPage($);
-        objLogin.loginToCms("super@admin.pl", "haslo");
+        objLoginPage = new LoginPage($);
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
         objHomePage = new HomePage($);
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
     }

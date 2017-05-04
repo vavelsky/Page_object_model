@@ -21,7 +21,7 @@ public class TestPlaylistEdit {
 
     DatabasePage objDatabasePage;
     HomePage objHomePage;
-    LoginPage objLogin;
+    LoginPage objLoginPage;
     PlaylistPage objPlaylistPage;
 
 
@@ -38,12 +38,12 @@ public class TestPlaylistEdit {
     @Test
     public void edit_name_and_description() throws Exception {
 
-        objLogin = new LoginPage($);
+        objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
         objDatabasePage = new DatabasePage($);
         objPlaylistPage = new PlaylistPage($);
 
-        objLogin.loginToCms("super@admin.pl", "haslo");
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
         objHomePage.findPlaylist("PlaylistK");
         objHomePage.clickSearch();

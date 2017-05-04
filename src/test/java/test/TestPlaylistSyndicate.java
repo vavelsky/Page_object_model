@@ -21,7 +21,7 @@ public class TestPlaylistSyndicate {
     WebDriver $;
     DatabasePage objDatabasePage;
     HomePage objHomePage;
-    LoginPage objLogin;
+    LoginPage objLoginPage;
     PlaylistPage objPlaylistPage;
 
     private StringBuffer verificationErrors = new StringBuffer();
@@ -40,10 +40,10 @@ public class TestPlaylistSyndicate {
 
         objDatabasePage = new DatabasePage($);
         objHomePage = new HomePage($);
-        objLogin = new LoginPage($);
+        objLoginPage = new LoginPage($);
         objPlaylistPage = new PlaylistPage($);
 
-        objLogin.loginToCms("super@admin.pl", "haslo");
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
         objHomePage.findPlaylist("PlaylistK");
         objHomePage.clickSearch();

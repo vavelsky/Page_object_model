@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
 public class TestPlaylistPublishing {
 
     WebDriver $;
-    LoginPage objLogin;
+    LoginPage objLoginPage;
     HomePage objHomePage;
     DatabasePage objDatabasePage;
 
@@ -34,11 +34,11 @@ public class TestPlaylistPublishing {
     @Test
     public void test_playlist_publishing(){
 
-        objLogin = new LoginPage($);
+        objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
         objDatabasePage = new DatabasePage($);
 
-        objLogin.loginToCms("super@admin.pl", "haslo");
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
         objHomePage.findPlaylist("PlaylistK");
         objHomePage.clickSearch();

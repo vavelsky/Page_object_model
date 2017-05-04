@@ -2,6 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class PlaylistPage {
 
@@ -26,7 +30,8 @@ public class PlaylistPage {
     //Playlist owners
 
     By SecondaryPlaylistOwner = By.xpath("//playlist-edit/div/div/div[3]/div[2]/div/div/div[1]/span");
-    By PrimaryPlaylistOwner = By.xpath("//playlist-edit/div/div/div[3]/div[1]/div/div/div[1]/span");
+    By PrimaryPlaylistOwner = By.xpath("//playlist-edit/div/div/div[3]/div[1]/div/div/div[1]/span/span[2]");
+    By PrimaryPlaylistOwnerDropdown = By.className("ui-select-choices-group");
 
     //Playlist text fields for edit
 
@@ -43,18 +48,18 @@ public class PlaylistPage {
     By SyndicateNapsterCheckbox = By.cssSelector("");
     By SyndicateYoutubeCheckbox = By.cssSelector("");
 
-    public PlaylistPage(WebDriver $){
+    public PlaylistPage(WebDriver $) {
         this.$ = $;
     }
 
-    public String getNotification(){
+    public String getNotification() {
 
         return $.findElement(Notification).getText();
     }
 
     //method to get Playlist name
 
-    public String getPlaylistPageTitle(){
+    public String getPlaylistPageTitle() {
 
         return $.findElement(PlaylistPageTitle).getText();
     }
@@ -67,46 +72,46 @@ public class PlaylistPage {
 
     //method to get Reimport status
 
-    public String getSyndicateStatus(){
+    public String getSyndicateStatus() {
         return $.findElement(SyndicateStatus).getText();
     }
 
 
     //click on Delete button
 
-    public void clickDelete(){
+    public void clickDelete() {
 
         $.findElement(DeleteButton).click();
     }
 
-    public void clickDeleteOnPopup(){
+    public void clickDeleteOnPopup() {
         $.findElement(PopupDeleteButton).click();
     }
 
     //click on Reimport button
 
-    public void clickReimport(){
+    public void clickReimport() {
 
         $.findElement(ReimportButton).click();
     }
 
     //click on Save button
 
-    public void clickSave(){
+    public void clickSave() {
 
         $.findElement(SaveButton).click();
     }
 
     //click on Syndicate button
 
-    public void clickSyndicate(){
+    public void clickSyndicate() {
 
         $.findElement(SyndicateButton).click();
     }
 
     //click on Update button
 
-    public void clickUpdate(){
+    public void clickUpdate() {
         $.findElement(UpdateButton).click();
     }
 
@@ -123,5 +128,11 @@ public class PlaylistPage {
     public void setPlaylistDescription(String strPlaylistDescription) {
         $.findElement(PlaylistDescription).clear();
         $.findElement(PlaylistDescription).sendKeys(strPlaylistDescription);
+    }
+
+    public void select(String strPrimarylistOwner) {
+        WebElement owner = $.findElement(PrimaryPlaylistOwner);
+        owner.click();
+
     }
 }
