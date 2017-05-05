@@ -1,7 +1,9 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class ImportPage {
 
@@ -14,7 +16,7 @@ public class ImportPage {
     By SpotifyInputField = By.xpath("//playlist-import/div/div/div[2]/div/div[1]/input");
     By YoutubeInputField = By.xpath("//playlist-import/div/div/div[2]/div/div[4]/div/input");
     By SoundcloudInputField = By.xpath("//ui-view/playlist-import/div/div/div[2]/div/div[5]/div/input");
-    By PlaylistBrandDrop = By.cssSelector("span.ui-select-match-text.pull-left");
+    By PlaylistBrandDrop = By.xpath("//playlist-import/div/div/div[2]/div/div[6]/div[2]/div[1]");
     By DigsterFmPlaylistBrand = By.cssSelector("#ui-select-choices-row-0-31 > span.ui-select-choices-row-inner > span.ng-binding.ng-scope");
     By NoSpotifyTokenPlaylistBrand = By.cssSelector("#ui-select-choices-row-0-2 > span.ui-select-choices-row-inner > span.ng-binding.ng-scope");
     By Notification = By.xpath("//body/md-toast/div/span");
@@ -48,8 +50,14 @@ public class ImportPage {
         $.findElement(SoundcloudInputField).sendKeys(strSoundcloudURL);
     }
 
-    public void selectDigsterFmPlaylistBrand(){
-        $.findElement(DigsterFmPlaylistBrand).click();
+    public void select_PlaylistBrand(String PlBrand){
+        WebElement brand = $.findElement(PlaylistBrandDrop);
+        brand.click();
+        brand.click();
+        JavascriptExecutor je = (JavascriptExecutor)$;
+        je.executeScript("arguments[0].scrollIntoView(true);",$.findElement(By.xpath("//span[contains(.,'"+PlBrand+"')]")));
+        WebElement clickbrand = $.findElement(By.xpath("//span[contains(.,'"+PlBrand+"')]"));
+        clickbrand.click();
     }
 
     public void selectPlaylistBrandWithoutToken(){

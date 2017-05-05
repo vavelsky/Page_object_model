@@ -44,10 +44,12 @@ public class TestPlaylistImport {
         objLoginPage.loginToCms("super@admin.pl", "haslo");
         objHomePage.clickImport();
         Assert.assertTrue(objImportPage.getImportPageName().toLowerCase().contains("import"));
-        objImportPage.setSpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        objImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
         objImportPage.clickBrands();
-        objImportPage.selectDigsterFmPlaylistBrand();
+
+        objImportPage.select_PlaylistBrand("Digster FM");
         objImportPage.clickImport();
+
         Assert.assertTrue(objImportPage.getNotification().toLowerCase().contains("playlist has been imported!"));
 
         Assert.assertTrue(objPlaylistPage.getPlaylistPageTitle().toLowerCase().contains("playlistk"));

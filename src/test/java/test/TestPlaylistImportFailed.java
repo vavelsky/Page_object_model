@@ -46,7 +46,7 @@ public class TestPlaylistImportFailed {
         Assert.assertTrue(objImportPage.getImportPageName().toLowerCase().contains("import"));
         objImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
         objImportPage.clickBrands();
-        objImportPage.selectDigsterFmPlaylistBrand();
+        objImportPage.select_PlaylistBrand("Digster FM");
         objImportPage.clickImport();
         Assert.assertTrue(objImportPage.getNotification().toLowerCase().contains("an error has occured, playlist has not been imported: this spotify playlist is already imported as playlistk"));
 
