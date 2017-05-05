@@ -35,7 +35,7 @@ public class TestPlaylistChangeOwner {
     }
 
     @Test
-    public void name() throws Exception {
+    public void test_change_primary_playlist_owner() throws Exception {
 
         objDatabasePage = new DatabasePage($);
         objHomePage = new HomePage($);
@@ -48,13 +48,35 @@ public class TestPlaylistChangeOwner {
         objHomePage.clickSearch();
 
         Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
+
         objDatabasePage.openPlaylist();
-        objPlaylistPage.setPrimaryPlaylistOwner("Donovan Palmer");
+        objPlaylistPage.select_PrimaryPlaylistOwner("Donovan Palmer");
+
+    }
+
+    @Test
+    public void test_change_secondary_playlist_owner() throws Exception {
+
+        objDatabasePage = new DatabasePage($);
+        objHomePage = new HomePage($);
+        objLoginPage = new LoginPage($);
+        objPlaylistPage = new PlaylistPage($);
+
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
+        Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
+        objHomePage.findPlaylist("PlaylistK");
+        objHomePage.clickSearch();
+
+        Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
+
+        objDatabasePage.openPlaylist();
+        objPlaylistPage.select_SecondaryPlaylistOwner("James Burnett");
+
     }
 
     @After
     public void tearDown() throws Exception {
-        //$.quit();
+        $.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);

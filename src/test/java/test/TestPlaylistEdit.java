@@ -51,8 +51,8 @@ public class TestPlaylistEdit {
         Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
         objDatabasePage.openPlaylist();
 
-        objPlaylistPage.setPlaylistName("New name");
-        objPlaylistPage.setPlaylistDescription("New description");
+        objPlaylistPage.set_PlaylistName("New name");
+        objPlaylistPage.set_PlaylistDescription("New description");
 
         objPlaylistPage.clickSave();
         Assert.assertTrue(objPlaylistPage.getNotification().toLowerCase().contains("playlist has been updated!"));

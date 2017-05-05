@@ -52,7 +52,7 @@ public class TestPlaylistSyndicate {
         objDatabasePage.openPlaylist();
 
         objPlaylistPage.clickUpdate();
-        objPlaylistPage.syndicateToDeezer();
+        objPlaylistPage.syndicateTo_Deezer();
         objPlaylistPage.clickSyndicate();
 
         Assert.assertTrue(objPlaylistPage.getSyndicateStatus().toLowerCase().contains("deezer completed."));

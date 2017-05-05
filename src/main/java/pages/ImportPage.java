@@ -24,27 +24,27 @@ public class ImportPage {
         this.$ = $;
     }
 
-    public void setSpotifyInputField(String strSpotifyURI){
+    public void set_SpotifyInputField(String strSpotifyURI){
 
         $.findElement(SpotifyInputField).sendKeys(strSpotifyURI);
     }
 
-    public void setDeezerInputField(String strDeezerURL){
+    public void set_DeezerInputField(String strDeezerURL){
 
         $.findElement(DeezerInputField).sendKeys(strDeezerURL);
     }
 
-    public void setNapsterInputField(String strNapsterURL){
+    public void set_NapsterInputField(String strNapsterURL){
 
         $.findElement(NapsterInputField).sendKeys(strNapsterURL);
     }
 
-    public void setYoutubeInputField(String strYoutubeURL){
+    public void set_YoutubeInputField(String strYoutubeURL){
 
         $.findElement(YoutubeInputField).sendKeys(strYoutubeURL);
     }
 
-    public void setSoundcloudInputField(String strSoundcloudURL){
+    public void set_SoundcloudInputField(String strSoundcloudURL){
         $.findElement(SoundcloudInputField).sendKeys(strSoundcloudURL);
     }
 

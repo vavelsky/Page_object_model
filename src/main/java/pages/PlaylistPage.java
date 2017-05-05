@@ -1,11 +1,11 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.List;
+import org.openqa.selenium.interactions.Actions;
+import sun.jvm.hotspot.utilities.Assert;
 
 public class PlaylistPage {
 
@@ -29,9 +29,8 @@ public class PlaylistPage {
 
     //Playlist owners
 
-    By SecondaryPlaylistOwner = By.xpath("//playlist-edit/div/div/div[3]/div[2]/div/div/div[1]/span");
     By PrimaryPlaylistOwner = By.xpath("//playlist-edit/div/div/div[3]/div[1]/div/div/div[1]/span/span[2]");
-    By PrimaryPlaylistOwnerDropdown = By.className("ui-select-choices-group");
+    By SecondaryPlaylistOwner = By.xpath("//playlist-edit/div/div/div[3]/div[2]/div/div/div[1]/span");
 
     //Playlist text fields for edit
 
@@ -67,12 +66,14 @@ public class PlaylistPage {
     //method to get get Reimport status
 
     public String getReimportStatus() {
+
         return $.findElement(ReimportStatus).getText();
     }
 
     //method to get Reimport status
 
     public String getSyndicateStatus() {
+
         return $.findElement(SyndicateStatus).getText();
     }
 
@@ -116,23 +117,35 @@ public class PlaylistPage {
     }
 
 
-    public void syndicateToDeezer() {
-        $.findElement(SyndicateDeezerCheckbox).click();
-    }
-
-    public void setPlaylistName(String strPlaylistName) {
+    public void set_PlaylistName(String strPlaylistName) {
         $.findElement(PlaylistName).clear();
         $.findElement(PlaylistName).sendKeys(strPlaylistName);
     }
 
-    public void setPlaylistDescription(String strPlaylistDescription) {
+    public void set_PlaylistDescription(String strPlaylistDescription) {
         $.findElement(PlaylistDescription).clear();
         $.findElement(PlaylistDescription).sendKeys(strPlaylistDescription);
     }
 
-    public void select(String strPrimarylistOwner) {
+    public void select_PrimaryPlaylistOwner(String PrOwner) {
         WebElement owner = $.findElement(PrimaryPlaylistOwner);
         owner.click();
+        JavascriptExecutor je = (JavascriptExecutor)$;
+        je.executeScript("arguments[0].scrollIntoView(true);",$.findElement(By.xpath("//span[contains(.,'"+PrOwner+"')]")));
+        WebElement clickowner = $.findElement(By.xpath("//span[contains(.,'"+PrOwner+"')]"));
+        clickowner.click();
+    }
 
+    public void select_SecondaryPlaylistOwner(String SecOwner) {
+        WebElement owner = $.findElement(SecondaryPlaylistOwner);
+        owner.click();
+        JavascriptExecutor je = (JavascriptExecutor)$;
+        je.executeScript("arguments[0].scrollIntoView(true);", $.findElement(By.xpath("//span[contains(., '"+SecOwner+"')]")));
+        WebElement clickowner = $.findElement(By.xpath("//span[contains(.,'"+SecOwner+"')]"));
+        clickowner.click();
+    }
+
+    public void syndicateTo_Deezer() {
+        $.findElement(SyndicateDeezerCheckbox).click();
     }
 }

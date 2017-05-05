@@ -44,7 +44,7 @@ public class TestPlaylistImportFailed {
         objHomePage.clickImport();
 
         Assert.assertTrue(objImportPage.getImportPageName().toLowerCase().contains("import"));
-        objImportPage.setSpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        objImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
         objImportPage.clickBrands();
         objImportPage.selectDigsterFmPlaylistBrand();
         objImportPage.clickImport();
@@ -64,7 +64,7 @@ public class TestPlaylistImportFailed {
         objHomePage.clickImport();
 
         Assert.assertTrue(objImportPage.getImportPageName().toLowerCase().contains("import"));
-        objImportPage.setSpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        objImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
         objImportPage.clickBrands();
         objImportPage.selectPlaylistBrandWithoutToken();
         objImportPage.clickImport();
