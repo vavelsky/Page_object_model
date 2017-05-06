@@ -4,7 +4,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.DatabasePage;
 import pages.HomePage;
@@ -36,7 +38,7 @@ public class TestPlaylistEdit {
     }
 
     @Test
-    public void edit_name_and_description() throws Exception {
+    public void test_edit_name_and_description() throws Exception {
 
         objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
@@ -57,6 +59,75 @@ public class TestPlaylistEdit {
         objPlaylistPage.clickSave();
         Assert.assertTrue(objPlaylistPage.getNotification().toLowerCase().contains("playlist has been updated!"));
 
+    }
+
+
+    @Test
+    public void test_change_primary_playlist_owner() throws Exception {
+
+        objDatabasePage = new DatabasePage($);
+        objHomePage = new HomePage($);
+        objLoginPage = new LoginPage($);
+        objPlaylistPage = new PlaylistPage($);
+
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
+        Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
+        objHomePage.findPlaylist("PlaylistK");
+        objHomePage.clickSearch();
+
+        Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
+
+        objDatabasePage.openPlaylist();
+        objPlaylistPage.select_PrimaryPlaylistOwner("Donovan Palmer");
+        objPlaylistPage.clickSave();
+
+        Assert.assertTrue(objPlaylistPage.getNotification().toLowerCase().contains("playlist has been updated!"));
+
+    }
+
+    @Test
+    public void test_change_secondary_playlist_owner() throws Exception {
+
+        objDatabasePage = new DatabasePage($);
+        objHomePage = new HomePage($);
+        objLoginPage = new LoginPage($);
+        objPlaylistPage = new PlaylistPage($);
+
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
+        Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
+        objHomePage.findPlaylist("PlaylistK");
+        objHomePage.clickSearch();
+
+        Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
+
+        objDatabasePage.openPlaylist();
+        objPlaylistPage.select_SecondaryPlaylistOwner("James Burnett");
+        objPlaylistPage.clickSave();
+
+        Assert.assertTrue(objPlaylistPage.getNotification().toLowerCase().contains("playlist has been updated!"));
+
+    }
+
+    @Test
+    public void test_activate_auto_import_and_syndicating() throws Exception {
+
+        objLoginPage = new LoginPage($);
+        objHomePage = new HomePage($);
+        objDatabasePage = new DatabasePage($);
+        objPlaylistPage = new PlaylistPage($);
+
+        objLoginPage.loginToCms("super@admin.pl", "haslo");
+        Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
+        objHomePage.findPlaylist("PlaylistK");
+        objHomePage.clickSearch();
+
+        Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
+        objDatabasePage.openPlaylist();
+
+        objPlaylistPage.activate_daily_auto_import_and_syndicating();
+        objPlaylistPage.clickSave();
+
+        Assert.assertTrue(objPlaylistPage.getNotification().toLowerCase().contains("playlist has been updated!"));
 
     }
 

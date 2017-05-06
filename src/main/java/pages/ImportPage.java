@@ -10,7 +10,9 @@ public class ImportPage {
     WebDriver $;
     By linkText = By.linkText("Import");
     By ImportPageName = By.xpath("//div[@class='container']/div/div/h1");
+
     By ImportButton = By.xpath("//button[contains(., 'Import')]");
+
     By NapsterInputField = By.xpath("//playlist-import/div/div/div[2]/div/div[3]/div/input");
     By DeezerInputField = By.xpath("//playlist-import/div/div/div[2]/div/div[2]/div/input");
     By SpotifyInputField = By.xpath("//playlist-import/div/div/div[2]/div/div[1]/input");

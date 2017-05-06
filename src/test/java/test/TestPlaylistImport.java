@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
@@ -34,7 +35,7 @@ public class TestPlaylistImport {
     }
 
     @Test
-    public void test_import() {
+    public void test_playlist_import() {
 
         objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);

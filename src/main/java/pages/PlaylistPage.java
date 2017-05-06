@@ -41,11 +41,24 @@ public class PlaylistPage {
 
     By PopupDeleteButton = By.xpath("//md-dialog-actions/button[2]");
 
-    //
+    // Syndicate popup - Music streaming services check-boxes
 
-    By SyndicateDeezerCheckbox = By.cssSelector("div.playlist-publish-dialog__services-checkboxes > md-checkbox[name=\"Deezer\"] > div.md-label > span.ng-binding.ng-scope");
-    By SyndicateNapsterCheckbox = By.cssSelector("");
-    By SyndicateYoutubeCheckbox = By.cssSelector("");
+    By Syndicate_to_Deezer = By.cssSelector("div.playlist-publish-dialog__services-checkboxes > md-checkbox[name=\"Deezer\"] > div.md-label > span.ng-binding.ng-scope");
+    By Syndicate_to_Napster = By.cssSelector("");
+    By Syndicate_to_Youtube = By.cssSelector("");
+    By Syndicate_to_Soundcloud = By.cssSelector("");
+
+    // Music streaming services check-boxes on page
+
+    By Stream_to_Deezer_page_checkbox = By.xpath("");
+    By Stream_to_Napster_page_checkbox = By.xpath("");
+    By Stream_to_Soundcloud_page_checkbox = By.xpath("");
+    By Stream_to_Youtube_page_checkbox = By.xpath("");
+
+    // Automatically import and syndicate playlist
+
+    By Dynamic_check_box = By.xpath("//playlist-edit/div/div/div[6]/div/md-checkbox/div[1]");
+    By Period_to_syndicate = By.xpath("//playlist-edit/div/div/div[6]/div/div/div/div[1]");
 
     public PlaylistPage(WebDriver $) {
         this.$ = $;
@@ -145,7 +158,18 @@ public class PlaylistPage {
         clickowner.click();
     }
 
+    public void activate_daily_auto_import_and_syndicating(){
+        WebElement autoImportCheck = $.findElement(Dynamic_check_box);
+        autoImportCheck.click();
+        WebElement autoImportPeriod = $.findElement(Period_to_syndicate);
+        autoImportPeriod.click();
+        JavascriptExecutor je = (JavascriptExecutor)$;
+        je.executeScript("arguments[0].scrollIntoView(true);", $.findElement(By.xpath("//span[contains(.,'Daily')]")));
+        WebElement clickPeriod = $.findElement(By.xpath("//span[contains(.,'Daily')]"));
+        clickPeriod.click();
+    }
+
     public void syndicateTo_Deezer() {
-        $.findElement(SyndicateDeezerCheckbox).click();
+        $.findElement(Syndicate_to_Deezer).click();
     }
 }
