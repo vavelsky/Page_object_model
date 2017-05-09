@@ -10,6 +10,7 @@ public class LoginPage {
     By Password = By.name("password");
     By login = By.cssSelector("button.login-form__submit");
 
+
     public LoginPage(WebDriver $) {
         this.$ = $;
     }

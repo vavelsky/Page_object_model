@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
-import pages.ImportPage;
+import pages.PitchedCreate_ImportPage;
 import pages.LoginPage;
 
 import java.util.concurrent.TimeUnit;
@@ -20,7 +20,7 @@ public class TestPlaylistImportFailed {
     WebDriver $;
     HomePage objHomePage;
     LoginPage objLoginPage;
-    ImportPage objImportPage;
+    PitchedCreate_ImportPage objPitchedCreateImportPage;
 
     private StringBuffer verificationErrors = new StringBuffer();
 
@@ -37,18 +37,18 @@ public class TestPlaylistImportFailed {
 
         objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
-        objImportPage = new ImportPage($);
+        objPitchedCreateImportPage = new PitchedCreate_ImportPage($);
 
         objLoginPage.loginToCms("super@admin.pl", "haslo");
 
         objHomePage.clickImport();
 
-        Assert.assertTrue(objImportPage.getImportPageName().toLowerCase().contains("import"));
-        objImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
-        objImportPage.clickBrands();
-        objImportPage.select_PlaylistBrand("Digster FM");
-        objImportPage.clickImport();
-        Assert.assertTrue(objImportPage.getNotification().toLowerCase().contains("an error has occured, playlist has not been imported: this spotify playlist is already imported as playlistk"));
+        Assert.assertTrue(objPitchedCreateImportPage.getImportPageName().toLowerCase().contains("import"));
+        objPitchedCreateImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        objPitchedCreateImportPage.clickBrands();
+        objPitchedCreateImportPage.select_PlaylistBrand("Digster FM");
+        objPitchedCreateImportPage.clickImport();
+        Assert.assertTrue(objPitchedCreateImportPage.getNotification().toLowerCase().contains("an error has occured, playlist has not been imported: this spotify playlist is already imported as playlistk"));
 
     }
 
@@ -57,19 +57,19 @@ public class TestPlaylistImportFailed {
 
         objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
-        objImportPage = new ImportPage($);
+        objPitchedCreateImportPage = new PitchedCreate_ImportPage($);
 
         objLoginPage.loginToCms("super@admin.pl", "haslo");
 
         objHomePage.clickImport();
 
-        Assert.assertTrue(objImportPage.getImportPageName().toLowerCase().contains("import"));
-        objImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
-        objImportPage.clickBrands();
-        objImportPage.selectPlaylistBrandWithoutToken();
-        objImportPage.clickImport();
+        Assert.assertTrue(objPitchedCreateImportPage.getImportPageName().toLowerCase().contains("import"));
+        objPitchedCreateImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        objPitchedCreateImportPage.clickBrands();
+        objPitchedCreateImportPage.selectPlaylistBrandWithoutToken();
+        objPitchedCreateImportPage.clickImport();
 
-        Assert.assertTrue(objImportPage.getNotification().toLowerCase().contains("an error has occured, playlist has not been imported: invalid oauth credentails"));
+        Assert.assertTrue(objPitchedCreateImportPage.getNotification().toLowerCase().contains("an error has occured, playlist has not been imported: invalid oauth credentails"));
     }
 
     @After

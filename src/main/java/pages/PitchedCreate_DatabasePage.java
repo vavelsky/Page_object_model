@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class DatabasePage {
+public class PitchedCreate_DatabasePage {
 
     WebDriver $;
 
@@ -22,7 +22,7 @@ public class DatabasePage {
     By ShowMoreButton = By.xpath("//ui-view/database/div/div/div[4]/button");
 
 
-    public DatabasePage(WebDriver $){
+    public PitchedCreate_DatabasePage(WebDriver $){
         this.$ = $;
     }
 

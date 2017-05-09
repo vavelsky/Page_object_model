@@ -15,8 +15,8 @@ public class TestPlaylistReimport {
     WebDriver $;
     LoginPage objLoginPage;
     HomePage objHomePage;
-    DatabasePage objDatabasePage;
-    PlaylistPage objPlaylistPage;
+    PitchedCreate_DatabasePage objPitchedCreateDatabasePage;
+    PlaylistDetailPage objPlaylistDetailPage;
 
 
     public StringBuffer verificationErrors = new StringBuffer();
@@ -34,19 +34,19 @@ public class TestPlaylistReimport {
 
         objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
-        objDatabasePage = new DatabasePage($);
-        objPlaylistPage = new PlaylistPage($);
+        objPitchedCreateDatabasePage = new PitchedCreate_DatabasePage($);
+        objPlaylistDetailPage = new PlaylistDetailPage($);
 
         objLoginPage.loginToCms("super@admin.pl", "haslo");
         Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
         objHomePage.findPlaylist("PlaylistK");
         objHomePage.clickSearch();
 
-        Assert.assertTrue(objDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
-        objDatabasePage.openPlaylist();
+        Assert.assertTrue(objPitchedCreateDatabasePage.getPlaylistNameOnList().toLowerCase().contains("playlistk"));
+        objPitchedCreateDatabasePage.openPlaylist();
 
-        objPlaylistPage.clickReimport();
-        Assert.assertEquals("playlist has been reimported successfully.", objPlaylistPage.getReimportStatus());
+        objPlaylistDetailPage.clickReimport();
+        Assert.assertEquals("playlist has been reimported successfully.", objPlaylistDetailPage.getReimportStatus());
     }
 
     @After

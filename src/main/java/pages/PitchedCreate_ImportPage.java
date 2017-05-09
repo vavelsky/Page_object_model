@@ -5,7 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ImportPage {
+public class PitchedCreate_ImportPage {
 
     WebDriver $;
     By linkText = By.linkText("Import");
@@ -24,7 +24,7 @@ public class ImportPage {
     By Notification = By.xpath("//body/md-toast/div/span");
 
 
-    public ImportPage(WebDriver $) {
+    public PitchedCreate_ImportPage(WebDriver $) {
         this.$ = $;
     }
 

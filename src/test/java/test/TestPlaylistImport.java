@@ -4,13 +4,12 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
-import pages.ImportPage;
+import pages.PitchedCreate_ImportPage;
 import pages.LoginPage;
-import pages.PlaylistPage;
+import pages.PlaylistDetailPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,8 +20,8 @@ public class TestPlaylistImport {
     WebDriver $;
     HomePage objHomePage;
     LoginPage objLoginPage;
-    ImportPage objImportPage;
-    PlaylistPage objPlaylistPage;
+    PitchedCreate_ImportPage objPitchedCreateImportPage;
+    PlaylistDetailPage objPlaylistDetailPage;
 
     private StringBuffer verificationErrors = new StringBuffer();
 
@@ -39,21 +38,21 @@ public class TestPlaylistImport {
 
         objLoginPage = new LoginPage($);
         objHomePage = new HomePage($);
-        objImportPage = new ImportPage($);
-        objPlaylistPage = new PlaylistPage($);
+        objPitchedCreateImportPage = new PitchedCreate_ImportPage($);
+        objPlaylistDetailPage = new PlaylistDetailPage($);
 
         objLoginPage.loginToCms("super@admin.pl", "haslo");
         objHomePage.clickImport();
-        Assert.assertTrue(objImportPage.getImportPageName().toLowerCase().contains("import"));
-        objImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
-        objImportPage.clickBrands();
+        Assert.assertTrue(objPitchedCreateImportPage.getImportPageName().toLowerCase().contains("import"));
+        objPitchedCreateImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        objPitchedCreateImportPage.clickBrands();
 
-        objImportPage.select_PlaylistBrand("Digster FM");
-        objImportPage.clickImport();
+        objPitchedCreateImportPage.select_PlaylistBrand("Digster FM");
+        objPitchedCreateImportPage.clickImport();
 
-        Assert.assertTrue(objImportPage.getNotification().toLowerCase().contains("playlist has been imported!"));
+        Assert.assertTrue(objPitchedCreateImportPage.getNotification().toLowerCase().contains("playlist has been imported!"));
 
-        Assert.assertTrue(objPlaylistPage.getPlaylistPageTitle().toLowerCase().contains("playlistk"));
+        Assert.assertTrue(objPlaylistDetailPage.getPlaylistPageTitle().toLowerCase().contains("playlistk"));
     }
 
     @After
