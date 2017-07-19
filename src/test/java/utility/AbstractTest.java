@@ -22,6 +22,7 @@ public abstract class AbstractTest {
     public void setUp() throws MalformedURLException{
 
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
 
         app = new PitchedApp(driver);
         driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);

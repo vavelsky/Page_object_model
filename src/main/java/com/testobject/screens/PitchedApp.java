@@ -1,5 +1,7 @@
 package com.testobject.screens;
 
+import com.testobject.screens.Admin.HomeAdmin;
+import com.testobject.screens.Admin.UsersPage;
 import com.testobject.screens.Create.*;
 import com.testobject.screens.Play.HomePlay;
 import com.testobject.screens.Play.PlaylistsPage;
@@ -36,5 +38,10 @@ public class PitchedApp {
     public HomePlay homePlay(){return new HomePlay(driver);}
     public YourSitesPage yourSitesPage(){return new YourSitesPage(driver);}
     public PlaylistsPage playlistsPage(){return new PlaylistsPage(driver);}
+
+    //ADMIN
+
+    public HomeAdmin homeAdmin(){return new HomeAdmin(driver);}
+    public UsersPage usersPage(){return new UsersPage(driver);}
 
 }
