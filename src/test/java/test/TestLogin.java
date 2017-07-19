@@ -1,47 +1,59 @@
 package test;
 
-import org.junit.After;
+import com.testobject.screens.Data.Credentials;
+import com.testobject.screens.Data.allStrings;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.HomePage;
-import pages.LoginPage;
+import utility.AbstractTest;
 
-import java.util.concurrent.TimeUnit;
+public class TestLogin extends AbstractTest{
 
-import static org.junit.Assert.fail;
-
-public class TestLogin {
-
-    WebDriver $;
-    HomePage objHomePage;
-    LoginPage objLoginPage;
-    private StringBuffer verificationErrors = new StringBuffer();
-
-    @Before
-    public void setUp(){
-        $ = new ChromeDriver();
-        $.get("https://develop-web-cms-pitched.miquido.net/");
-        $.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        $.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    @Test
+    public void loginAsPlayEditor(){
+        app.loginPage().openPage(allStrings.cmsDev);
+        app.loginPage().loginToCms(Credentials.playEditorLogin, Credentials.playEditorPassword);
+        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
     }
 
     @Test
-    public void test_HomePage_Login(){
-        objLoginPage = new LoginPage($);
-        objLoginPage.loginToCms("super@admin.pl", "haslo");
-        objHomePage = new HomePage($);
-        Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
+    public void loginAsPlaySiteAdmin(){
+        app.loginPage().openPage(allStrings.cmsDev);
+        app.loginPage().loginToCms(Credentials.playSiteAdminLogin, Credentials.playSiteAdminPassword);
+        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
+
     }
 
-    @After
-    public void tearDown(){
-        $.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
+    @Test
+    public void loginAsPlaylistProgrammer(){
+        app.loginPage().openPage(allStrings.cmsDev);
+        app.loginPage().loginToCms(Credentials.playListPragrammerLogin, Credentials.playListPragrammerPassword);
+        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
+
     }
+
+    @Test
+    public void loginAsTeamAdmin(){
+        app.loginPage().openPage(allStrings.cmsDev);
+        app.loginPage().loginToCms(Credentials.teamAdminLogin, Credentials.teamAdminPassword);
+        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
+
+    }
+
+    @Test
+    public void loginAsParrentBrandAdmin(){
+        app.loginPage().openPage(allStrings.cmsDev);
+        app.loginPage().loginToCms(Credentials.parrentBrandAdminLogin, Credentials.parrentBrandAdminPassword);
+        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
+
+    }
+
+    @Test
+    public void loginAsSuperAdmin(){
+
+        app.loginPage().openPage(allStrings.cmsDev);
+        app.loginPage().loginToCms(Credentials.superAdminLogin, Credentials.superAdminPassword);
+        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
+    }
+
+
 }

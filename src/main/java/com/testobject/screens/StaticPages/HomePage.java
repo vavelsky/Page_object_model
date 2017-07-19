@@ -1,11 +1,10 @@
-package pages;
+package com.testobject.screens.StaticPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
+public class HomePage extends AbstractScreen{
 
-    WebDriver $;
     By homePageName = By.xpath("//navigation-primary/div/div/h1");
     By Importlink = By.linkText("Import");
     By SearchField = By.xpath("//input[@type='text']");
@@ -13,31 +12,31 @@ public class HomePage {
     By Notification = By.xpath("//body/md-toast/div/span");
     By PlayLink = By.linkText("Play");
 
-    public HomePage(WebDriver $) {
-        this.$ = $;
+    public HomePage(WebDriver driver) {
+        super(driver);
     }
 
     public String getHomePageName() {
-        return $.findElement(homePageName).getText();
+        return driver.findElement(homePageName).getText();
     }
 
     public void findPlaylist(String strSearchField){
-        $.findElement(SearchField).sendKeys(strSearchField);
+        driver.findElement(SearchField).sendKeys(strSearchField);
     }
 
     public void clickSearch(){
-        $.findElement(SearchButton).click();
+        driver.findElement(SearchButton).click();
     }
 
     public void clickImport() {
-        $.findElement(Importlink).click();
+        driver.findElement(Importlink).click();
     }
 
     public void waitNotification(){
-        $.findElement(Notification);
+        driver.findElement(Notification);
     }
 
     public void clickPlay(){
-        $.findElement(PlayLink).click();
+        driver.findElement(PlayLink).click();
     }
 }

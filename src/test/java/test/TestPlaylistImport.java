@@ -1,66 +1,34 @@
 package test;
 
-import org.junit.After;
+import com.testobject.screens.Data.Credentials;
+import com.testobject.screens.Data.allStrings;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.HomePage;
-import pages.PitchedCreate_ImportPage;
-import pages.LoginPage;
-import pages.PlaylistDetailPage;
+import utility.AbstractTest;
 
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.fail;
-
-public class TestPlaylistImport {
-
-    WebDriver $;
-    HomePage objHomePage;
-    LoginPage objLoginPage;
-    PitchedCreate_ImportPage objPitchedCreateImportPage;
-    PlaylistDetailPage objPlaylistDetailPage;
-
-    private StringBuffer verificationErrors = new StringBuffer();
-
-    @Before
-    public void setUp(){
-        $ = new ChromeDriver();
-        $.get("https://develop-web-cms-pitched.miquido.net/");
-        $.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        $.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
+public class TestPlaylistImport extends AbstractTest {
 
     @Test
-    public void test_playlist_import() {
+    public void testPlaylistImport() {
 
-        objLoginPage = new LoginPage($);
-        objHomePage = new HomePage($);
-        objPitchedCreateImportPage = new PitchedCreate_ImportPage($);
-        objPlaylistDetailPage = new PlaylistDetailPage($);
+        //login
 
-        objLoginPage.loginToCms("super@admin.pl", "haslo");
-        objHomePage.clickImport();
-        Assert.assertTrue(objPitchedCreateImportPage.getImportPageName().toLowerCase().contains("import"));
-        objPitchedCreateImportPage.set_SpotifyInputField("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
-        objPitchedCreateImportPage.clickBrands();
+        app.loginPage().openPage(allStrings.cmsDev);
+        app.loginPage().loginToCms(Credentials.superAdminLogin, Credentials.superAdminPassword);
+        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
 
-        objPitchedCreateImportPage.select_PlaylistBrand("Digster FM");
-        objPitchedCreateImportPage.clickImport();
+        //import
 
-        Assert.assertTrue(objPitchedCreateImportPage.getNotification().toLowerCase().contains("playlist has been imported!"));
+        app.homeCreate().openImportPage();
+        app.importPage().setSpotifyURI("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        app.importPage().clickBrands();
 
-        Assert.assertTrue(objPlaylistDetailPage.getPlaylistPageTitle().toLowerCase().contains("playlistk"));
-    }
+        app.importPage().selectPlaylistBrand("Pawel Playlist");
+        app.importPage().clickImport();
 
-    @After
-    public void tearDown(){
-        $.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
+        Assert.assertTrue(app.importPage().getNotificationPopup().contains(allStrings.successfulImport));
+
+        Assert.assertTrue(app.playlistDetailPage().getPlaylistPageTitle().toLowerCase().contains("playlistk"));
+
     }
 }

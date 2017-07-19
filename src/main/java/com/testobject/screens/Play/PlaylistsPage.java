@@ -1,39 +1,39 @@
-package pages;
+package com.testobject.screens.Play;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PitchedPlay_PlaylistsPage {
+public class PlaylistsPage {
 
     WebDriver $;
 
-    By PageTitle = By.xpath("//navigation-primary/div/div/h1");
-    By PageSubTitle = By.xpath("//ui-view/playlists/div/div/div[1]/h1");
+    private By PageTitle = By.xpath("//navigation-primary/div/div/h1");
+    private By PageSubTitle = By.xpath("//ui-view/playlists/div/div/div[1]/h1");
 
     // Header second level links
 
-    By Playlists_top_link = By.linkText("Playlists");
-    By Your_sites_top_link = By.linkText("Your Sites");
+    private By Playlists_top_link = By.linkText("Playlists");
+    private By Your_sites_top_link = By.linkText("Your Sites");
 
     // Search block items
 
-    By SearchField = By.xpath("//input[@type='text']");
-    By SearchButton = By.xpath("//button[contains(., 'Search')]");
+    private By SearchField = By.xpath("//input[@type='text']");
+    private By SearchButton = By.xpath("//button[contains(., 'Search')]");
 
     // Filter your playlist block items
 
-    By AddButton = By.xpath("//button[contains(., 'Add')]");
-    By HideButton = By.cssSelector(".expandable-section__button-icon");
-    By PlaylistBrand_selector = By.cssSelector(".ui-select-placeholder.text-muted.ng-binding");
-    By PlaySite_selector = By.cssSelector(".ui-select-match-text.pull-left");
-    By Plylist_brand_selector = By.xpath(".btn.btn-default.form-control.ui-select-toggle");
-    By Playlist_Category_input_field = By.cssSelector(".ui-select-search.input-xs.ng-pristine.ng-valid.ng-empty.ng-touched");
-    By PlaylistName = By.cssSelector(".playlist-table__name.ng-binding");
+    private By AddButton = By.xpath("//button[contains(., 'Add')]");
+    private By HideButton = By.cssSelector(".expandable-section__button-icon");
+    private By PlaylistBrand_selector = By.cssSelector(".ui-select-placeholder.text-muted.ng-binding");
+    private By PlaySite_selector = By.cssSelector(".ui-select-match-text.pull-left");
+    private By Plylist_brand_selector = By.xpath(".btn.btn-default.form-control.ui-select-toggle");
+    private By Playlist_Category_input_field = By.cssSelector(".ui-select-search.input-xs.ng-pristine.ng-valid.ng-empty.ng-touched");
+    private By PlaylistName = By.cssSelector(".playlist-table__name.ng-binding");
 
 
-    public PitchedPlay_PlaylistsPage(WebDriver $) {
+    public PlaylistsPage(WebDriver $) {
         this.$ = $;
     }
 

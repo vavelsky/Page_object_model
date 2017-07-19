@@ -1,74 +1,36 @@
 package test;
 
-
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.*;
+import utility.AbstractTest;
 
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.fail;
-
-public class Test_Add_PL_to_category {
-
-    WebDriver $;
-
-    HomePage objHomePage;
-    LoginPage objLoginPage;
-    PitchedPlay_PlaylistsPage objPitchedPlay_PlaylistPage;
-
-    private StringBuffer verificationErrors = new StringBuffer();
-
-    @Before
-    public void setUp(){
-        $ = new ChromeDriver();
-        $.get("https://develop-web-cms-pitched.miquido.net/");
-        $.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        $.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
+public class Test_Add_PL_to_category extends AbstractTest{
 
     @Test
     public void test_add_playlist_to_category() throws Exception {
 
-        objLoginPage = new LoginPage($);
-        objHomePage = new HomePage($);
-        objPitchedPlay_PlaylistPage = new PitchedPlay_PlaylistsPage($);
+        app.loginPage().loginToCms("super@admin.pl", "haslo");
+        Assert.assertTrue(app.homePage().getHomePageName().toLowerCase().contains("pitched.create"));
+        app.homePage().clickPlay();
 
-        objLoginPage.loginToCms("super@admin.pl", "haslo");
-        Assert.assertTrue(objHomePage.getHomePageName().toLowerCase().contains("pitched.create"));
+        app.playlistsPage().clickPlaylitsLink();
 
-        objHomePage.clickPlay();
-        objPitchedPlay_PlaylistPage.clickPlaylitsLink();
+        app.playlistsPage().findPlaylist("PlaylistK");
 
-        objPitchedPlay_PlaylistPage.findPlaylist("PlaylistK");
+        Assert.assertTrue(app.playlistsPage().getPageTitle().toLowerCase().contains("pitched.play"));
+        Assert.assertTrue(app.playlistsPage().gePageSubTitle().toLowerCase().contains("playlists"));
 
-        Assert.assertTrue(objPitchedPlay_PlaylistPage.getPageTitle().toLowerCase().contains("pitched.play"));
-        Assert.assertTrue(objPitchedPlay_PlaylistPage.gePageSubTitle().toLowerCase().contains("playlists"));
+        app.playlistsPage().clickHideButton();
+        app.playlistsPage().clickHideButton();
 
-        objPitchedPlay_PlaylistPage.clickHideButton();
-        objPitchedPlay_PlaylistPage.clickHideButton();
+        app.playlistsPage().select_PlaySite("Digster.fm");
 
-        objPitchedPlay_PlaylistPage.select_PlaySite("Digster.fm");
+        Assert.assertTrue(app.playlistsPage().checkPlaylist_Is_Exist().toLowerCase().contains("playlistk"));
 
-        Assert.assertTrue(objPitchedPlay_PlaylistPage.checkPlaylist_Is_Exist().toLowerCase().contains("playlistk"));
+        app.playlistsPage().clickAddButton();
 
-        objPitchedPlay_PlaylistPage.clickAddButton();
-
-        objPitchedPlay_PlaylistPage.select_Category("Chill");
+        app.playlistsPage().select_Category("Chill");
 
 
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        //$.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
     }
 }
