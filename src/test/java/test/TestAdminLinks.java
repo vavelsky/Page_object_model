@@ -27,6 +27,7 @@ public class TestAdminLinks extends AbstractTest {
     //open Users
 
     app.homeAdmin().clickUsersTopLink();
+    app.usersPage().clickToEdit("Automation, Parent Brand Admin");
   }
 
   @Test

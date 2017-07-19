@@ -56,7 +56,7 @@ public class HomeAdmin extends AbstractScreen{
   @FindBy(xpath = "//admin-tiles/div/div/div/div[4]")
   private WebElement playSiteTile;
 
-  public HomeAdmin (WebDriver driver) {   super(driver);  }
+  public HomeAdmin (WebDriver driver) {super(driver);}
 
   public void clickUsersTopLink(){
     usersTopLink.click();
@@ -109,4 +109,5 @@ public class HomeAdmin extends AbstractScreen{
   public void clickPlaySiteTile(){
     playSiteTile.click();
   }
+
 }

@@ -1,6 +1,7 @@
 package com.testobject.screens.Admin;
 
 import com.testobject.screens.StaticPages.AbstractScreen;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,8 +18,12 @@ public class UsersPage extends AbstractScreen {
 
   //Users' list
 
-  @FindBy(xpath = "html/body/app-container/div/div[1]/ui-view/users/div/div/div/users-list/div/table/tbody/tr[@text()='test new team']/td[5]/button")
-  private WebElement editUserButton;
+  @FindBy(xpath = "//users/div/div/div/users-list/div/table/tbody/tr")
+  private WebElement allUsers;
 
   public UsersPage(WebDriver driver) { super(driver);}
+
+  public void clickToEdit(String User){
+    driver.findElement(By.xpath("//users-list/div/table/tbody/tr/td[contains(text(), '"+User+"')]"));
+  }
 }
