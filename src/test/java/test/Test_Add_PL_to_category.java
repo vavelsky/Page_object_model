@@ -23,7 +23,7 @@ public class Test_Add_PL_to_category extends AbstractTest{
         app.playlistsPage().clickHideButton();
         app.playlistsPage().clickHideButton();
 
-        app.playlistsPage().select_PlaySite("Digster.fm");
+        app.playlistsPage().selectPlaySite("Digster.fm");
 
         Assert.assertTrue(app.playlistsPage().checkPlaylist_Is_Exist().toLowerCase().contains("playlistk"));
 

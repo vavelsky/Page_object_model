@@ -1,96 +1,116 @@
 package com.testobject.screens.Play;
 
+import com.testobject.screens.StaticPages.AbstractScreen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class PlaylistsPage {
+public class PlaylistsPage extends AbstractScreen{
 
-    WebDriver $;
+    @FindBy(xpath = "//navigation-primary/div/div/h1")
+    private WebElement pageTitle;
 
-    private By PageTitle = By.xpath("//navigation-primary/div/div/h1");
-    private By PageSubTitle = By.xpath("//ui-view/playlists/div/div/div[1]/h1");
+    @FindBy(xpath = "//ui-view/playlists/div/div/div[1]/h1")
+    private WebElement pageSubTitle;
 
     // Header second level links
 
-    private By Playlists_top_link = By.linkText("Playlists");
-    private By Your_sites_top_link = By.linkText("Your Sites");
+    @FindBy(linkText = "Playlists")
+    private WebElement playlistsTopLink;
+
+    @FindBy(linkText = "Your Sites")
+    private WebElement yourSitesTopLink;
 
     // Search block items
 
-    private By SearchField = By.xpath("//input[@type='text']");
-    private By SearchButton = By.xpath("//button[contains(., 'Search')]");
+    @FindBy(xpath = "//input[@type='text']")
+    private WebElement searchField;
+
+    @FindBy(xpath = "//button[contains(., 'Search')]")
+    private WebElement searchButton;
 
     // Filter your playlist block items
 
-    private By AddButton = By.xpath("//button[contains(., 'Add')]");
-    private By HideButton = By.cssSelector(".expandable-section__button-icon");
-    private By PlaylistBrand_selector = By.cssSelector(".ui-select-placeholder.text-muted.ng-binding");
-    private By PlaySite_selector = By.cssSelector(".ui-select-match-text.pull-left");
-    private By Plylist_brand_selector = By.xpath(".btn.btn-default.form-control.ui-select-toggle");
-    private By Playlist_Category_input_field = By.cssSelector(".ui-select-search.input-xs.ng-pristine.ng-valid.ng-empty.ng-touched");
-    private By PlaylistName = By.cssSelector(".playlist-table__name.ng-binding");
+    @FindBy(xpath ="//button[contains(., 'Add')]")
+    private WebElement addButton;
+
+    @FindBy(css = ".expandable-section__button-icon")
+    private WebElement hideButton;
+
+    @FindBy(css = ".ui-select-placeholder.text-muted.ng-binding")
+    private WebElement playlistBrandSelector;
+
+    @FindBy(css = ".ui-select-match-text.pull-left")
+    private WebElement playSiteSelector;
+
+    @FindBy(css = ".btn.btn-default.form-control.ui-select-toggle")
+    private WebElement plylistBrandSelector;
+
+    @FindBy(css = ".ui-select-search.input-xs.ng-pristine.ng-valid.ng-empty.ng-touched")
+    private WebElement playlistCategoryInputField;
+
+    @FindBy(css =".playlist-table__name.ng-binding")
+    private WebElement playlistName;
 
 
-    public PlaylistsPage(WebDriver $) {
-        this.$ = $;
-    }
+    public PlaylistsPage(WebDriver driver) {super(driver);}
 
     public void findPlaylist(String strSearchField){
 
-        $.findElement(SearchField).sendKeys(strSearchField);
-        $.findElement(SearchButton).click();
+        searchField.sendKeys(strSearchField);
+        searchButton.click();
     }
 
-    public void select_PlaySite(String PlaySite_name){
-        WebElement selPlaySite = $.findElement(PlaySite_selector);
+    public void selectPlaySite(String PlaySite_name){
+        WebElement selPlaySite = playSiteSelector;
         selPlaySite.click();
-        JavascriptExecutor je = (JavascriptExecutor)$;
-        je.executeScript("arguments[0].scrollIntoView(true);", $.findElement(By.xpath("//span[contains(., '"+PlaySite_name+"')]")));
-        WebElement clickPlaySiteSelector = $.findElement(By.xpath("//span[contains(.,'"+PlaySite_name+"')]"));
+        JavascriptExecutor je = (JavascriptExecutor)driver;
+        je.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//span[contains(., '"+PlaySite_name+"')]")));
+        WebElement clickPlaySiteSelector = driver.findElement(By.xpath("//span[contains(.,'"+PlaySite_name+"')]"));
         clickPlaySiteSelector.click();
     }
 
-    public void select_Playlist_Brand(String PlaylistBrand_name){
-        WebElement selPlaylistBrand = $.findElement(PlaylistBrand_selector);
+    public void selectPlaylistBrand(String PlaylistBrand_name){
+        WebElement selPlaylistBrand = playlistBrandSelector;
         selPlaylistBrand.click();
-        JavascriptExecutor je = (JavascriptExecutor)$;
-        je.executeScript("arguments[0].scrollIntoView(true);", $.findElement(By.xpath("//span[contains(., '"+PlaylistBrand_name+"')]")));
-        WebElement clickPlaylistBrandSelector = $.findElement(By.xpath("//span[contains(.,'"+PlaylistBrand_name+"')]"));
+        JavascriptExecutor je = (JavascriptExecutor)driver;
+        je.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//span[contains(., '"+PlaylistBrand_name+"')]")));
+        WebElement clickPlaylistBrandSelector = driver.findElement(By.xpath("//span[contains(.,'"+PlaylistBrand_name+"')]"));
         clickPlaylistBrandSelector.click();
     }
 
     public String gePageSubTitle() {
-        return $.findElement(PageSubTitle).getText();
+        return pageSubTitle.getText();
     }
 
     public String getPageTitle() {
-        return $.findElement(PageTitle).getText();
+        return pageTitle.getText();
     }
 
     public void clickHideButton() {
-        $.findElement(HideButton).click();
+        hideButton.click();
     }
 
     public void clickPlaylitsLink() {
-        $.findElement(Playlists_top_link).click();
+        playlistsTopLink.click();
     }
 
     public void clickAddButton() {
-        $.findElement(AddButton).click();
+        addButton.click();
     }
 
     public void select_Category(String Category) {
-        WebElement selPlaylistCategory = $.findElement(Playlist_Category_input_field);
+        WebElement selPlaylistCategory = playlistCategoryInputField;
         selPlaylistCategory.click();
-        JavascriptExecutor je = (JavascriptExecutor)$;
-        je.executeScript("arguments[0].scrollIntoView(true);", $.findElement(By.xpath("//span[contains(., '"+Category+"')]")));
-        WebElement clickPlaylistCategory = $.findElement(By.xpath("//span[contains(.,'"+Category+"')]"));
+        JavascriptExecutor je = (JavascriptExecutor)driver;
+        je.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//span[contains(., '"+Category+"')]")));
+        WebElement clickPlaylistCategory = driver.findElement(By.xpath("//span[contains(.,'"+Category+"')]"));
         clickPlaylistCategory.click();
     }
 
     public String checkPlaylist_Is_Exist() {
-        return $.findElement(PlaylistName).getText();
+        return playlistName.getText();
     }
 }
