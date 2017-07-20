@@ -17,8 +17,8 @@ public class TestPlaylistEdit extends AbstractTest{
         Assert.assertTrue(app.databasePage().getPlaylistNameOnList().toLowerCase().contains("playlistk"));
         app.databasePage().openPlaylist();
 
-        app.playlistDetailPage().set_PlaylistName("New name");
-        app.playlistDetailPage().set_PlaylistDescription("New description");
+        app.playlistDetailPage().setPlaylistName("New name");
+        app.playlistDetailPage().setPlaylistDescription("New description");
 
         app.playlistDetailPage().clickSave();
         Assert.assertTrue(app.playlistDetailPage().getNotification().toLowerCase().contains("playlist has been updated!"));
@@ -37,7 +37,7 @@ public class TestPlaylistEdit extends AbstractTest{
         Assert.assertTrue(app.databasePage().getPlaylistNameOnList().toLowerCase().contains("playlistk"));
 
         app.databasePage().openPlaylist();
-        app.playlistDetailPage().select_PrimaryPlaylistOwner("Donovan Palmer");
+        app.playlistDetailPage().selectPrimaryPlaylistOwner("Donovan Palmer");
         app.playlistDetailPage().clickSave();
 
         Assert.assertTrue(app.playlistDetailPage().getNotification().toLowerCase().contains("playlist has been updated!"));
@@ -55,7 +55,7 @@ public class TestPlaylistEdit extends AbstractTest{
         Assert.assertTrue(app.databasePage().getPlaylistNameOnList().toLowerCase().contains("playlistk"));
 
         app.databasePage().openPlaylist();
-        app.playlistDetailPage().select_SecondaryPlaylistOwner("James Burnett");
+        app.playlistDetailPage().selectSecondaryPlaylistOwner("James Burnett");
         app.playlistDetailPage().clickSave();
 
         Assert.assertTrue(app.playlistDetailPage().getNotification().toLowerCase().contains("playlist has been updated!"));
@@ -73,7 +73,7 @@ public class TestPlaylistEdit extends AbstractTest{
         Assert.assertTrue(app.databasePage().getPlaylistNameOnList().toLowerCase().contains("playlistk"));
         app.databasePage().openPlaylist();
 
-        app.playlistDetailPage().activate_daily_auto_import_and_syndicating();
+        app.playlistDetailPage().activateDailyAutoImportAndSyndicating();
         app.playlistDetailPage().clickSave();
 
         Assert.assertTrue(app.playlistDetailPage().getNotification().toLowerCase().contains("playlist has been updated!"));
@@ -93,7 +93,7 @@ public class TestPlaylistEdit extends AbstractTest{
 
         Assert.assertTrue(app.playlistDetailPage().getPlaylistPageTitle().toLowerCase().contains("playlistk"));
 
-        app.playlistDetailPage().scroll_to("Select your tags and add (+)");
+        app.playlistDetailPage().scrollTo("Select your tags and add (+)");
         app.playlistDetailPage().set_All_of_tags("soul", "sad", "extra", "Mood Fu", "master");
 
         app.playlistDetailPage().clickSave();
@@ -112,7 +112,7 @@ public class TestPlaylistEdit extends AbstractTest{
         app.databasePage().openPlaylist();
         Assert.assertTrue(app.playlistDetailPage().getPlaylistPageTitle().toLowerCase().contains("playlistk"));
 
-        app.playlistDetailPage().select_Do_not_import_Spotify_description();
+        app.playlistDetailPage().selectDoNotImportSpotifyDescription();
         app.playlistDetailPage().clickSave();
 
         Assert.assertTrue(app.playlistDetailPage().getNotification().toLowerCase().contains("playlist has been updated!"));

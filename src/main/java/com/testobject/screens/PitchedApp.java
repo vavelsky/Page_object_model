@@ -8,7 +8,7 @@ import com.testobject.screens.Play.PlaylistsPage;
 import com.testobject.screens.Play.YourSitesPage;
 import com.testobject.screens.StaticPages.HomePage;
 import com.testobject.screens.StaticPages.LoginPage;
-import com.testobject.screens.StaticPages.PlaylistDetailPage;
+import com.testobject.screens.StaticPages.PlaylistDetailP;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -23,7 +23,7 @@ public class PitchedApp {
 
     public HomePage homePage(){return new HomePage(driver);}
     public LoginPage loginPage(){return new LoginPage(driver);}
-    public PlaylistDetailPage playlistDetailPage(){return new PlaylistDetailPage(driver);}
+    public PlaylistDetailP playlistDetailPage(){return new PlaylistDetailP(driver);}
 
     //CREATE
 
