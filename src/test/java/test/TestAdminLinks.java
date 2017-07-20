@@ -97,7 +97,7 @@ public class TestAdminLinks extends AbstractTest {
 
     app.homeCreate().openAdmin();
 
-    //open Tags
+    //open PlaylistTags
 
     app.homeAdmin().clickTagsTopLink();
   }

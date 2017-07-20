@@ -8,7 +8,12 @@ import com.testobject.screens.Play.PlaylistsPage;
 import com.testobject.screens.Play.YourSitesPage;
 import com.testobject.screens.StaticPages.HomePage;
 import com.testobject.screens.StaticPages.LoginPage;
-import com.testobject.screens.StaticPages.PlaylistDetailP;
+import com.testobject.screens.StaticPages.PlaylistDetailPage.CreateInPitched.Playlist;
+import com.testobject.screens.StaticPages.PlaylistDetailPage.CreateInPitched.TrackSearch;
+import com.testobject.screens.StaticPages.PlaylistDetailPage.PlaylistHelpElements;
+import com.testobject.screens.StaticPages.PlaylistDetailPage.PlaylistInfo;
+import com.testobject.screens.StaticPages.PlaylistDetailPage.PlaylistStreamingServices;
+import com.testobject.screens.StaticPages.PlaylistDetailPage.PlaylistTags;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -23,7 +28,15 @@ public class PitchedApp {
 
     public HomePage homePage(){return new HomePage(driver);}
     public LoginPage loginPage(){return new LoginPage(driver);}
-    public PlaylistDetailP playlistDetailPage(){return new PlaylistDetailP(driver);}
+
+    //PLAYLIST DETAIL PAGE
+
+    public PlaylistHelpElements playlistDetailPage(){return new PlaylistHelpElements(driver);}
+    public PlaylistInfo playlistInfo(){return new PlaylistInfo(driver);}
+    public PlaylistTags playlistTags(){return new PlaylistTags(driver);}
+    public PlaylistStreamingServices playlistStreamingServices(){return new PlaylistStreamingServices(driver);}
+    public Playlist playlistCreateInPitched(){return new Playlist(driver);}
+    public TrackSearch trackSearchCreateInPitched(){return new TrackSearch(driver);}
 
     //CREATE
 

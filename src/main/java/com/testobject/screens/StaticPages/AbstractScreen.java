@@ -13,6 +13,8 @@ public abstract class AbstractScreen {
     @FindBy(linkText = "Import")
     private WebElement importTopLink;
 
+
+
     public AbstractScreen(WebDriver driver){
         this.driver = driver;
 

@@ -1,7 +1,9 @@
 package com.testobject.screens.StaticPages.PlaylistDetailPage.CreateInPitched;
 
-/**
- * Created by dimakostiukevych on 7/20/17.
- */
-public class TrackSearch {
+import com.testobject.screens.StaticPages.AbstractScreen;
+import org.openqa.selenium.WebDriver;
+
+public class TrackSearch extends AbstractScreen{
+
+    public TrackSearch(WebDriver driver){super(driver);}
 }
