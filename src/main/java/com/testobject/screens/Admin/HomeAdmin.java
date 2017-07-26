@@ -27,7 +27,7 @@ public class HomeAdmin extends AbstractScreen{
   @FindBy(linkText = "Play Site")
   private WebElement playSiteTopLink;
 
-  @FindBy(linkText = "PlaylistTags")
+  @FindBy(linkText = "Tags")
   private WebElement tagsTopLink;
 
   @FindBy(linkText = "Youtube")
@@ -74,9 +74,7 @@ public class HomeAdmin extends AbstractScreen{
     playSiteTopLink.click();
   }
 
-  public void clickTagsTopLink(){
-    tagsTopLink.click();
-  }
+  public void clickTagsTopLink(){    tagsTopLink.click();  }
 
   public void clickYoutubeTopLink(){
     youtubeTopLink.click();

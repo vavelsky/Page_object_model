@@ -1,4 +1,4 @@
-package test;
+package test.Admin;
 
 import com.testobject.screens.Data.Credentials;
 import com.testobject.screens.Data.allStrings;
@@ -27,7 +27,6 @@ public class TestAdminLinks extends AbstractTest {
     //open Users
 
     app.homeAdmin().clickUsersTopLink();
-    app.usersPage().clickToEdit("Automation, Parent Brand Admin");
   }
 
   @Test

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 /**
  * Created by pmisiak on 19.07.2017.
  */
@@ -13,7 +14,7 @@ public class UsersPage extends AbstractScreen {
 
   //Create button
 
-  @FindBy(linkText = "Create New User")
+  @FindBy(xpath = "//ui-view/users/div/div/div/a/div/span")
   private WebElement createNewUserLink;
 
   //Users' list
@@ -24,6 +25,12 @@ public class UsersPage extends AbstractScreen {
   public UsersPage(WebDriver driver) { super(driver);}
 
   public void clickToEdit(String User){
-    driver.findElement(By.xpath("//users-list/div/table/tbody/tr/td[contains(text(), '"+User+"')]"));
+    driver.findElement(By.xpath("//users-list/div/table/tbody/tr[./td[contains(text(), '"+User+"')]]//button")).click();
   }
+
+  public void clickToCreateNewUser(){
+    createNewUserLink.click();
+  }
+
+
 }

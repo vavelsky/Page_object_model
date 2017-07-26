@@ -1,5 +1,6 @@
 package com.testobject.screens;
 
+import com.testobject.screens.Admin.EditUserPage;
 import com.testobject.screens.Admin.HomeAdmin;
 import com.testobject.screens.Admin.UsersPage;
 import com.testobject.screens.Create.*;
@@ -56,5 +57,6 @@ public class PitchedApp {
 
     public HomeAdmin homeAdmin(){return new HomeAdmin(driver);}
     public UsersPage usersPage(){return new UsersPage(driver);}
+    public EditUserPage editUserPage(){return new EditUserPage(driver);}
 
 }
