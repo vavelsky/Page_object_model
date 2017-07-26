@@ -20,7 +20,7 @@ public class TestPlaylistImport extends AbstractTest {
         //import
 
         app.homeCreate().openImportPage();
-        app.importPage().setSpotifyURI("spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm");
+        app.importPage().setSpotifyURI(allStrings.SpotifyPlaylist);
         app.importPage().clickBrands();
 
         app.importPage().selectPlaylistBrand("Pawel Playlist");

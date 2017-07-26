@@ -15,5 +15,9 @@ public class allStrings {
 
     public static final String successfulImport = "Playlist has been imported!";
 
+    //
+
+    public static final String SpotifyPlaylist = "spotify:user:miquidoqa3:playlist:6kj9xb3BQTUTwieCUKL1tm";
+
 
 }
