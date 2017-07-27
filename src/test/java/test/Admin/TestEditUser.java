@@ -62,6 +62,8 @@ public class TestEditUser extends AbstractTest {
 
     app.editUserPage().clickDeleteUser();
     app.editUserPage().confirmDeltetion();
+
+
   }
 
   @Test
@@ -90,4 +92,5 @@ public class TestEditUser extends AbstractTest {
     app.editUserPage().clickDeleteUser();
     app.editUserPage().cancelDeletion();
   }
+
 }

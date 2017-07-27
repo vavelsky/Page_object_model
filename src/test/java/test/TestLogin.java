@@ -1,6 +1,5 @@
 package test;
 
-import com.testobject.screens.Data.Credentials;
 import com.testobject.screens.Data.allStrings;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,49 +9,42 @@ public class TestLogin extends AbstractTest{
 
     @Test
     public void loginAsPlayEditor(){
-        app.loginPage().openPage(allStrings.cmsDev);
-        app.loginPage().loginToCms(Credentials.playEditorLogin, Credentials.playEditorPassword);
-        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
+    app.loginPage().loginAsPlayEditor();
+    Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
     }
 
     @Test
     public void loginAsPlaySiteAdmin(){
-        app.loginPage().openPage(allStrings.cmsDev);
-        app.loginPage().loginToCms(Credentials.playSiteAdminLogin, Credentials.playSiteAdminPassword);
+        app.loginPage().loginAsPlaySiteAdmin();
         Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
-
     }
 
     @Test
     public void loginAsPlaylistProgrammer(){
-        app.loginPage().openPage(allStrings.cmsDev);
-        app.loginPage().loginToCms(Credentials.playListPragrammerLogin, Credentials.playListPragrammerPassword);
+        app.loginPage().loginAsPlayListProgrammer();
         Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
 
     }
 
     @Test
     public void loginAsTeamAdmin(){
-        app.loginPage().openPage(allStrings.cmsDev);
-        app.loginPage().loginToCms(Credentials.teamAdminLogin, Credentials.teamAdminPassword);
+        app.loginPage().loginAsTeamAdmin();
         Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
 
     }
 
     @Test
     public void loginAsParrentBrandAdmin(){
-        app.loginPage().openPage(allStrings.cmsDev);
-        app.loginPage().loginToCms(Credentials.parrentBrandAdminLogin, Credentials.parrentBrandAdminPassword);
+        app.loginPage().loginAsParrentBrandAdmin();
         Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
 
     }
 
     @Test
     public void loginAsSuperAdmin(){
-
-        app.loginPage().openPage(allStrings.cmsDev);
-        app.loginPage().loginToCms(Credentials.superAdminLogin, Credentials.superAdminPassword);
+        app.loginPage().loginAsSuperAdmin();
         Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
+        app.loginPage().logOut();
     }
 
 

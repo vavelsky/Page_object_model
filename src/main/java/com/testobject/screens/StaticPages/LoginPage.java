@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.testobject.screens.Data.Credentials.*;
+import static com.testobject.screens.Data.allStrings.cmsDev;
+
 public class LoginPage extends AbstractScreen{
 
     @FindBy(name = "login")
@@ -34,4 +37,47 @@ public class LoginPage extends AbstractScreen{
 
     }
 
+    //login methods
+
+    public void loginAsSuperAdmin(){
+        this.openPage(cmsDev);
+        this.setUserName(superAdminLogin);
+        this.setPassword(superAdminPassword);
+        this.clickLogin();
+    }
+
+    public void loginAsPlayEditor(){
+        this.openPage(cmsDev);
+        this.setUserName(playEditorLogin);
+        this.setPassword(playEditorPassword);
+        this.clickLogin();
+    }
+
+    public void loginAsPlaySiteAdmin(){
+        this.openPage(cmsDev);
+        this.setUserName(playSiteAdminLogin);
+        this.setPassword(playSiteAdminPassword);
+        this.clickLogin();
+    }
+
+    public void loginAsPlayListProgrammer(){
+        this.openPage(cmsDev);
+        this.setUserName(playListPragrammerLogin);
+        this.setPassword(playListPragrammerPassword);
+        this.clickLogin();
+    }
+
+    public void loginAsTeamAdmin(){
+        this.openPage(cmsDev);
+        this.setUserName(teamAdminLogin);
+        this.setPassword(teamAdminPassword);
+        this.clickLogin();
+    }
+
+    public void loginAsParrentBrandAdmin(){
+        this.openPage(cmsDev);
+        this.setUserName(parrentBrandAdminLogin);
+        this.setPassword(parrentBrandAdminPassword);
+        this.clickLogin();
+    }
 }

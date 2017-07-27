@@ -51,7 +51,7 @@ public class ImportPage extends AbstractScreen{
     public ImportPage(WebDriver driver) {super(driver);}
 
     public void setSpotifyURI(String strSpotifyURI){
-
+        spotifyInputField.clear();
         spotifyInputField.sendKeys(strSpotifyURI);
     }
 

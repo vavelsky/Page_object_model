@@ -1,5 +1,7 @@
 package test;
 
+import com.testobject.screens.Data.Credentials;
+import com.testobject.screens.Data.allStrings;
 import org.junit.Assert;
 import org.junit.Test;
 import utility.AbstractTest;
@@ -9,8 +11,12 @@ public class TestPlaylistDelete extends AbstractTest{
     @Test
     public void test_playlist_delete(){
 
-        app.loginPage().loginToCms("super@admin.pl", "haslo");
-        Assert.assertTrue(app.homePage().getHomePageName().toLowerCase().contains("pitched.create"));
+        //login
+
+        app.loginPage().openPage(allStrings.cmsDev);
+        app.loginPage().loginToCms(Credentials.superAdminLogin, Credentials.superAdminPassword);
+        Assert.assertEquals(app.homePage().getHomePageName(), allStrings.createHomeTitle);
+
         app.homePage().findPlaylist("PlaylistK");
         app.homePage().clickSearch();
         Assert.assertTrue(app.databasePage().getPlaylistNameOnList().toLowerCase().contains("playlistk"));

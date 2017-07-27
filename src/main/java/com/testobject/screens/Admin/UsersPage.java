@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 
 /**
  * Created by pmisiak on 19.07.2017.
@@ -22,6 +24,9 @@ public class UsersPage extends AbstractScreen {
   @FindBy(xpath = "//users/div/div/div/users-list/div/table/tbody/tr")
   private WebElement allUsers;
 
+  @FindBy(xpath = "//users-list/div/table/tbody/tr/td[1]")
+  private List<WebElement> usersNames;
+
   public UsersPage(WebDriver driver) { super(driver);}
 
   public void clickToEdit(String User){
@@ -32,5 +37,7 @@ public class UsersPage extends AbstractScreen {
     createNewUserLink.click();
   }
 
+   public void checkIsDeleted(String userName){
+  }
 
 }
